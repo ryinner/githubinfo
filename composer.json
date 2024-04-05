@@ -3,6 +3,7 @@
     "description": "simple package for get info from git",
     "type": "library",
     "license": "MIT",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "Ryinner\\Githubinfo\\": "src/"
