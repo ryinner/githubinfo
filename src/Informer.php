@@ -20,6 +20,11 @@ class Informer
         return trim($user);
     }
 
+    /**
+     * equivalent git branch with regexp search active branch
+     *
+     * @return string
+     */
     public function getCurrentBranch(): string
     {
         $branches = (new CliCommandRunner())('git branch');
@@ -33,5 +38,23 @@ class Informer
         $currentBranch = trim(str_replace('*', '', $matches[0]));
 
         return $currentBranch;
+    }
+
+    /**
+     * equivalent git ls-remote --heads origin with regexp search commit hash
+     *
+     * @return string
+     */
+    public function getLastCommitByOriginBranch(string $branchName): string
+    {
+        $allLastCommitsByBranches = (new CliCommandRunner())('git ls-remote --heads origin');
+
+        preg_match("/[^\s]{1,}\s{1,}(refs\/heads\/{$branchName})/mi", $allLastCommitsByBranches, $lastDevelopCommit);
+
+        [$commitText] = $lastDevelopCommit;
+
+        $commitHash = preg_replace("/\s{1,}(refs\/heads\/{$branchName})/mi", '', $commitText);
+
+        return trim ($commitHash);
     }
 }
