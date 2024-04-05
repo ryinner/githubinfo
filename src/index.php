@@ -7,4 +7,4 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $informer = new Informer();
 
-var_dump($informer->getUser());
+var_dump($informer->getCurrentBranch());
