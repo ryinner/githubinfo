@@ -45,7 +45,7 @@ class Informer
      *
      * @return string
      */
-    public function getLastCommitByOriginBranch(string $branchName): string
+    public function getLastCommitHashByOriginBranch(string $branchName): string
     {
         $allLastCommitsByBranches = (new CliCommandRunner())('git ls-remote --heads origin');
 
